@@ -1,6 +1,6 @@
 Name:		libpaper
 Version:	1.1.20
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPL
@@ -32,7 +32,6 @@ cp debian/NEWS NEWS
 
 %build
 touch AUTHORS
-aclocal
 automake -a
 %configure --disable-static
 make %{?_smp_mflags}
@@ -76,6 +75,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Sat Sep 23 2006 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.20-4
+- remove aclocal call
+
 * Sat Sep 23 2006 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.20-3
 - fix FC-4 with aclocal call
 - move man3 pages to -devel
