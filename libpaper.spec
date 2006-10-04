@@ -1,6 +1,6 @@
 Name:		libpaper
 Version:	1.1.20
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPL
@@ -75,6 +75,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Oct 05 2006 Christian Iseli <Christian.Iseli@licr.org> 1.1.20-5
+ - rebuilt for unwind info generation, broken in gcc-4.1.1-21
+
 * Sat Sep 23 2006 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.20-4
 - remove aclocal call
 
