@@ -1,11 +1,12 @@
 Name:		libpaper
-Version:	1.1.20
-Release:	5%{?dist}
+Version:	1.1.21
+Release:	1%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPL
 URL:		http://packages.qa.debian.org/libp/libpaper.html
 Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}.tar.gz
+Patch0:		libpaper-1.1.20-automake_1.10.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	automake, gettext
 
@@ -28,10 +29,13 @@ to develop applications which use libpaper.
 
 %prep
 %setup -q
+%patch0 -p1
 cp debian/NEWS NEWS
 
 %build
 touch AUTHORS
+aclocal
+autoconf
 automake -a
 %configure --disable-static
 make %{?_smp_mflags}
@@ -75,6 +79,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Mon Jul 09 2007 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.21-1
+- bump to 1.1.21
+- fix automake bug (bz 247458)
+
 * Thu Oct 05 2006 Christian Iseli <Christian.Iseli@licr.org> 1.1.20-5
  - rebuilt for unwind info generation, broken in gcc-4.1.1-21
 
