@@ -1,9 +1,9 @@
 Name:		libpaper
-Version:	1.1.21
-Release:	1%{?dist}.1
+Version:	1.1.22
+Release:	1%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
-License:	GPL
+License:	GPLv2
 URL:		http://packages.qa.debian.org/libp/libpaper.html
 Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}.tar.gz
 Patch0:		libpaper-1.1.20-automake_1.10.patch
@@ -79,6 +79,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Thu Aug 23 2007 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.22-1
+- bump, no real changes of note, rebuild for ppc32
+- license fix, v2 only
+
 * Mon Jul 09 2007 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.21-1.1
 - BR: libtool
 
