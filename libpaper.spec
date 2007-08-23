@@ -3,7 +3,7 @@ Version:	1.1.21
 Release:	1%{?dist}.1
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
-License:	GPL
+License:	GPLv2
 URL:		http://packages.qa.debian.org/libp/libpaper.html
 Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}.tar.gz
 Patch0:		libpaper-1.1.20-automake_1.10.patch
