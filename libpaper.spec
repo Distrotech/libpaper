@@ -1,6 +1,6 @@
 Name:		libpaper
-Version:	1.1.22
-Release:	1%{?dist}.1
+Version:	1.1.23
+Release:	1%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPLv2
@@ -79,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Tue Feb 19 2008 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.23-1
+- 1.1.23
+
 * Fri Aug 24 2007 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.22-1.1
 - missing BR: gawk
 
