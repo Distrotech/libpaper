@@ -1,12 +1,20 @@
 Name:		libpaper
-Version:	1.1.22
-Release:	1%{?dist}.1
+Version:	1.1.23
+Release:	3%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPLv2
 URL:		http://packages.qa.debian.org/libp/libpaper.html
-Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}.tar.gz
+Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}+nmu1.tar.gz
+# Filed	upstream as:
+# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=496126
 Patch0:		libpaper-1.1.20-automake_1.10.patch
+# Upstream bug:
+# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=475683
+Patch1:		libpaper-1.1.23-debianbug475683.patch
+# Filed upstream as:
+# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=481213
+Patch2:		libpaper-useglibcfallback.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	libtool, gettext, gawk
 
@@ -28,12 +36,13 @@ This package contains headers and libraries that programmers will need
 to develop applications which use libpaper.
 
 %prep
-%setup -q
-%patch0 -p1
-cp debian/NEWS NEWS
+%setup -q -n %{name}-%{version}+nmu1
+%patch0 -p1 -b .automake110
+%patch1 -p1 -b .dlfix
+%patch2 -p1 -b .useglibcfallback
 
 %build
-touch AUTHORS
+touch AUTHORS NEWS
 aclocal
 autoconf
 automake -a
@@ -62,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(-, root, root, -)
-%doc COPYING ChangeLog NEWS README
+%doc COPYING ChangeLog README
 %config(noreplace) %{_sysconfdir}/papersize
 %dir %{_sysconfdir}/libpaper.d
 %{_bindir}/paperconf
@@ -79,6 +88,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Aug 22 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 1.1.23-3
+- update to nmu1
+- apply patch to fix imprecise definition of DL format
+- apply patch so that when no config is present, libpaper will fallback through
+  LC_PAPER before giving up and using Letter
+
+* Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 1.1.23-2
+- Autorebuild for GCC 4.3
+
+* Tue Feb 19 2008 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.23-1
+- 1.1.23
+
 * Fri Aug 24 2007 Tom "spot" Callaway <tcallawa@redhat.com> 1.1.22-1.1
 - missing BR: gawk
 
