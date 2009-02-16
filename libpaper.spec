@@ -92,7 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
-* Mon Feb 16 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 1.1.23-4
+* Mon Feb 16 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 1.1.23-4
 - run libtoolize to fix build with newer libtool
 - disable rpath
 
