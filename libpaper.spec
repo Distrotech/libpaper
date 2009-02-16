@@ -1,6 +1,6 @@
 Name:		libpaper
 Version:	1.1.23
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPLv2
@@ -40,6 +40,7 @@ to develop applications which use libpaper.
 %patch0 -p1 -b .automake110
 %patch1 -p1 -b .dlfix
 %patch2 -p1 -b .useglibcfallback
+libtoolize
 
 %build
 touch AUTHORS NEWS
@@ -47,6 +48,9 @@ aclocal
 autoconf
 automake -a
 %configure --disable-static
+# Disable rpath
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 make %{?_smp_mflags}
 
 %install
@@ -88,6 +92,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Mon Feb 16 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 1.1.23-4
+- run libtoolize to fix build with newer libtool
+- disable rpath
+
 * Fri Aug 22 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 1.1.23-3
 - update to nmu1
 - apply patch to fix imprecise definition of DL format
