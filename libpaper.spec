@@ -1,6 +1,6 @@
 Name:		libpaper
 Version:	1.1.23
-Release:	5%{?dist}
+Release:	6%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPLv2
@@ -92,6 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.23-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
 * Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.23-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
