@@ -1,11 +1,11 @@
 Name:		libpaper
-Version:	1.1.23
-Release:	7%{?dist}
+Version:	1.1.24
+Release:	1%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPLv2
 URL:		http://packages.qa.debian.org/libp/libpaper.html
-Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}+nmu2.tar.gz
+Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}.tar.gz
 # Filed	upstream as:
 # http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=496126
 Patch0:		libpaper-1.1.20-automake_1.10.patch
@@ -36,7 +36,7 @@ This package contains headers and libraries that programmers will need
 to develop applications which use libpaper.
 
 %prep
-%setup -q -n %{name}-%{version}+nmu2
+%setup -q -n %{name}-%{version}
 %patch0 -p1 -b .automake110
 %patch1 -p1 -b .dlfix
 %patch2 -p1 -b .useglibcfallback
@@ -92,6 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Sat Apr 24 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 1.1.24-1
+- update to 1.1.24
+
 * Thu Mar  4 2010 Tom "spot" Callaway <tcallawa@redhat.com> - 1.1.23-7
 - update to 1.1.23+nmu2
 
