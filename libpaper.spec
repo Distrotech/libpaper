@@ -1,11 +1,13 @@
+%global nmu +nmu1
+
 Name:		libpaper
 Version:	1.1.24
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPLv2
 URL:		http://packages.qa.debian.org/libp/libpaper.html
-Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}.tar.gz
+Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}%{nmu}.tar.gz
 # Filed	upstream as:
 # http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=496126
 Patch0:		libpaper-1.1.20-automake_1.10.patch
@@ -15,7 +17,6 @@ Patch1:		libpaper-1.1.23-debianbug475683.patch
 # Filed upstream as:
 # http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=481213
 Patch2:		libpaper-useglibcfallback.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	libtool, gettext, gawk
 
 %description
@@ -36,7 +37,7 @@ This package contains headers and libraries that programmers will need
 to develop applications which use libpaper.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}%{nmu}
 %patch0 -p1 -b .automake110
 %patch1 -p1 -b .dlfix
 %patch2 -p1 -b .useglibcfallback
@@ -54,7 +55,6 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT install
 rm $RPM_BUILD_ROOT%{_libdir}/*.la
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
@@ -66,15 +66,11 @@ for i in cs da de es fr gl hu it ja nl pt_BR sv tr uk vi; do
 done
 %find_lang %{name}
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
-%defattr(-, root, root, -)
 %doc COPYING ChangeLog README
 %config(noreplace) %{_sysconfdir}/papersize
 %dir %{_sysconfdir}/libpaper.d
@@ -86,12 +82,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %files devel
-%defattr(-, root, root, -)
 %{_includedir}/paper.h
 %{_libdir}/libpaper.so
 %{_mandir}/man3/*
 
 %changelog
+* Tue May 17 2011 Tom Callaway <spot@fedoraproject.org> - 1.1.24-3
+- bump to nmu1
+
 * Tue Feb 08 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.24-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
 
