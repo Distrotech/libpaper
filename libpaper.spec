@@ -2,7 +2,7 @@
 
 Name:		libpaper
 Version:	1.1.24
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPLv2
@@ -87,6 +87,9 @@ done
 %{_mandir}/man3/*
 
 %changelog
+* Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.24-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Tue May 17 2011 Tom Callaway <spot@fedoraproject.org> - 1.1.24-3
 - bump to nmu1
 
