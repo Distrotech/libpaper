@@ -1,19 +1,13 @@
-%global nmu +nmu1
+%global nmu +nmu3
 
 Name:		libpaper
 Version:	1.1.24
-Release:	7%{?dist}
+Release:	8%{?dist}
 Summary:	Library and tools for handling papersize
 Group:		System Environment/Libraries
 License:	GPLv2
 URL:		http://packages.qa.debian.org/libp/libpaper.html
 Source0:	http://ftp.debian.org/debian/pool/main/libp/libpaper/%{name}_%{version}%{nmu}.tar.gz
-# Filed	upstream as:
-# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=496126
-Patch0:		libpaper-1.1.20-automake_1.10.patch
-# Upstream bug:
-# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=475683
-Patch1:		libpaper-1.1.23-debianbug475683.patch
 # Filed upstream as:
 # http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=481213
 Patch2:		libpaper-useglibcfallback.patch
@@ -38,8 +32,6 @@ to develop applications which use libpaper.
 
 %prep
 %setup -q -n %{name}-%{version}%{nmu}
-%patch0 -p1 -b .automake110
-%patch1 -p1 -b .dlfix
 %patch2 -p1 -b .useglibcfallback
 libtoolize
 
